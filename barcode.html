@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="table.txt"></script>
+<script type="text/javascript">
+  
+  //-----------------------------
+  window.onload=main;
+
+  //----------------------------
+  //
+  //----------------------------
+  var lines;
+  function main(){
+    lines=(table).split('\n');
+  }
+
+  //----------------------------
+  //
+  //----------------------------
+  function filter(x){
+    var out = lines.filter(function(e){return e.includes(x)});
+    document.getElementById('output').innerHTML=out.join("<br/>");
+
+  }
+</script>
+<html>
+
+<body>
+
+<input type='text' onkeyup='filter(this.value)'></input><br/>
+
+<span id='output'></span>
+</body>
+</html>
