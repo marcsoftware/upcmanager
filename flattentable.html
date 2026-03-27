@@ -27,6 +27,11 @@
           if(line.includes("_")){
             modname=line.trim();
             document.getElementById('output').innerHTML += line;
+          }else{
+            //line contains numbers
+            // delete all whtiespace
+            // capture all using regex \d\d\d\d to guantee 4digitnumbers.
+            // display the numbers using modname TAB linecounter TAB upc
           }
 
         }
