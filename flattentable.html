@@ -19,7 +19,17 @@
     //--------------------------------------------
     function parse(text){
         var lines = text.split("\n");
-        document.getElementById('output').innerHTML = lines;
+        var modname='none';
+        var linecounter=0;
+        //document.getElementById('output').innerHTML = lines;
+        for(var i =0;i<lines.length;i++){
+          line=lines[i];
+          if(line.includes("_")){
+            modname=line.trim();
+            document.getElementById('output').innerHTML += line;
+          }
+
+        }
     }
   </script>
 
