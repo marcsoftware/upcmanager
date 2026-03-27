@@ -19,6 +19,7 @@
     //--------------------------------------------
     function parse(text){
         var lines = text.split("\n");
+        lines = lines.filter(n => n);// delete empty lines
         var modname='none';
         var linecounter=0;
         //document.getElementById('output').innerHTML = lines;
@@ -26,11 +27,13 @@
           line=lines[i];
           if(line.includes("_")){
             modname=line.trim();
-            document.getElementById('output').innerHTML += line;
+            document.getElementById('output').innerHTML += line+"<br/>";
           }else{
             //line contains numbers
-            // delete all whtiespace
-            // capture all using regex \d\d\d\d to guantee 4digitnumbers.
+            var numbers = line.replace(/\D/g,""); //delete all no digits
+            numbers = numbers.match(/\d\d\d\d/g); // capture all 4digits numbers
+            
+            document.getElementById('output').innerHTML += numbers+"<br/>";
             // display the numbers using modname TAB linecounter TAB upc
           }
 
