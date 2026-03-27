@@ -28,6 +28,9 @@
           line=lines[i];
           if(line.includes("_")){
             modname=line.trim();
+            //TODO add emoji to modname
+            modname = addEmoji(modname);
+
             linecounter=1;
             //document.getElementById('output').innerHTML += line+"<br/>";
           }else{
@@ -41,7 +44,7 @@
             for(var j =0;j<numbers.length;j++){
               // print the upcs
               //document.getElementById('output').innerHTML += modname+linecounter+numbers[j]+"<br/>";
-              document.getElementById('output').innerHTML += `${modname}🔹 ${linecounter}➖ ${numbers[j]}<br/>`;
+              document.getElementById('output').innerHTML += `${modname} ${linecounter}➖ ${numbers[j]}<br/>`;
               linecounter++;
 
             }
@@ -49,6 +52,13 @@
           }
 
         }
+    }
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    function addEmoji(name){
+      return name+'🟦';
     }
   </script>
 
