@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <script>
+
+    //--------------------------------------------
+    window.onload = main;
+    //--------------------------------------------
+    
+    //
+    //--------------------------------------------
+    function main(){
+      var input = document.getElementById('input').value;
+      document.getElementById('output').innerHTML='';
+      parse(input);
+    }
+
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    function parse(text){
+        var lines = text.split("\n");
+        lines = lines.filter(n => n);// delete empty lines
+        var modname='none';
+        var linecounter=0;
+        //document.getElementById('output').innerHTML = lines;
+        for(var i =0;i<lines.length;i++){
+          line=lines[i];
+          if(line.includes("_")){
+            modname=line.trim();
+            //TODO add emoji to modname
+            modname = addEmoji(modname);
+
+            linecounter=1;
+            //document.getElementById('output').innerHTML += line+"<br/>";
+          }else{
+            //line contains numbers
+            var numbers = line.replace(/\D/g,""); //delete all no digits
+            numbers = numbers.match(/\d\d\d\d/g); // capture all 4digits numbers
+            
+           // document.getElementById('output').innerHTML += numbers+"<br/>";
+            
+            // display the numbers using modname TAB linecounter TAB upc
+            for(var j =0;j<numbers.length;j++){
+              // print the upcs
+              //document.getElementById('output').innerHTML += modname+linecounter+numbers[j]+"<br/>";
+              document.getElementById('output').innerHTML += `${modname} ${linecounter}➖ ${numbers[j]}'<br/>`;
+              linecounter++;
+
+            }
+
+          }
+
+        }
+    }
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    //🌘 🌙 🌎 🪐 💫 ✨ ⚡️ ☄️ 💥 🔥 🌪 ☀️ 🌤 🌦  ⛈  🌨 ❄️ ☃️ 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 🔺 🔻 🔸 🔹 🔶 🔷 🔳 🔲 ◾️ ◽️ 🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 
+    var emojis = `🌘 🌙 🌎 🪐 💫 ❄️ ⚡️ ☄️ 💥 🔥 🌪 ☀️ 🌤 🌦  ⛈  🌨 ❄️ ☃️ 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 🔺 🔻 🔸 🔹 🔶 🔷 🔳 🔲 ◾️ ◽️ 🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️`.split(' ');
+    function addEmoji(name){
+      var alldigits = name.match(/[a-zA-Z]\d+/g)[0];
+      alldigits = alldigits.match(/\d+/g)[0];
+
+      var lastdigit = parseInt(alldigits[alldigits.length-1]);
+   
+        var emoji = emojis[lastdigit];
+
+      return name+emoji;
+    }
+  </script>
+
+  <textarea id="input" name="w3review" rows="4" cols="50" onkeyup="main()">
+</textarea>
+
+<p id='output'></p>
+</body>
+</html>
