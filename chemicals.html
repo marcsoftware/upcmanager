@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script type="text/javascript" src="table.txt"></script>
+<script type="text/javascript">
+  var table=``;
+  //-----------------------------
+  window.onload=main;
+
+  //----------------------------
+  //
+  //----------------------------
+  var lines;
+  function main(){
+    lines=(table).split('\n');
+   
+  }
+
+  //----------------------------
+  //
+  //----------------------------
+  function filter(x){
+    var out = lines.filter(function(e){return e.includes(x+"'")});
+    document.getElementById('output').innerHTML=out.join("<br/>");
+
+  }
+
+
+  //----------------------------
+  //
+  //----------------------------
+  function empty(){
+    
+    document.getElementById("input").value = "";
+    document.getElementById("input").focus();
+  }
+</script>
+<html>
+
+<body>
+
+<input type='number' id='input' onkeyup='filter(this.value)'></input>
+<button onclick="empty()" >Click me</button><br/>
+
+<span id='output'></span>
+</body>
+</html>
