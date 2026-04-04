@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <body>
+  <style>
+    #input{
+      position:fixed;
+      top:0;
+    }
+  </style>
   <script>
 
     //--------------------------------------------
@@ -56,6 +62,15 @@
         window.scrollTo(0, document.body.scrollHeight); //
     }
 
+     //--------------------------------------------
+    //
+    //--------------------------------------------
+    function debug(){
+      //TODO make stuff in brackets be ignore by the parse function
+      // TODO format text in the input-textarea to have 5 upc on each line
+      // add [number] in brackets for easy debuggin.
+    }
+
     //--------------------------------------------
     //
     //--------------------------------------------
@@ -72,7 +87,7 @@
       return name+emoji;
     }
   </script>
-
+<input type=button onclick=debug()></input>
   <textarea id="input" name="w3review" rows="4" cols="50" onkeyup="main()">
 </textarea>
 
