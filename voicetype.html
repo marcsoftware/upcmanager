@@ -41,7 +41,7 @@
             //document.getElementById('output').innerHTML += line+"<br/>";
           }else{
             //line contains numbers
-            var numbers=line.replace(/\[.+\]/g,''); //delete everything between brackets[]
+            var numbers=line.replace(/\[[^\[\]]+\]/g,''); //delete everything between brackets[]
              numbers = numbers.replace(/\D/g,""); //delete all non digits
             
        
@@ -85,7 +85,7 @@
             output+=line+"\n";
             keepcounter=0;
            }else{ //if line contains numbers
-                  var numbers=line.replace(/\[.+\]/g,''); //delete everything between brackets[]
+                  var numbers=line.replace(/\[[^\[\]]+\]/g,''); //delete everything between brackets[]
              numbers = numbers.replace(/\D/g,""); //delete all non digits
             
        
