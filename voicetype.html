@@ -91,16 +91,19 @@
        
             
             numbers = numbers.match(/\d\d\d\d/g); // capture all 4digits numbers
-            alert(numbers);
+            
            // document.getElementById('output').innerHTML += numbers+"<br/>";
             
             // display the numbers using modname TAB linecounter TAB upc
             for(var j =0;j<numbers.length;j++){
               
-             output+=numbers[j]+`[${j+1}]`;
+             output+=numbers[j]+`[${j+keepcounter+1}]`;
+             if((j+1)%5===0){
+              output+='\n';
+             }
 
             }
-
+              keepcounter+=j;
            }
         }
 
