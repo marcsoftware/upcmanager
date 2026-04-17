@@ -42,6 +42,9 @@
           }else{
             //line contains numbers
             var numbers = line.replace(/\D/g,""); //delete all no digits
+            //TODO keep everything in brackets AND dont put them in numbers-variable
+            // maybe turn theminto emojies
+            //1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣9️⃣𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗
             numbers = numbers.match(/\d\d\d\d/g); // capture all 4digits numbers
             
            // document.getElementById('output').innerHTML += numbers+"<br/>";
