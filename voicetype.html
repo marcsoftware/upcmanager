@@ -3,7 +3,7 @@
 <body>
   <style>
     #input{
-      
+       width:80%;
     }
   </style>
   <script>
@@ -98,7 +98,7 @@
             for(var j =0;j<numbers.length;j++){
               
              output+=numbers[j]+`[${j+keepcounter+1}]`;
-             if((j+1)%5===0){
+             if((j+1)%10===0){
               output+='\n';
              }
 
@@ -108,6 +108,7 @@
         }
 
          document.getElementById('input').value=output;
+         document.getElementById("input").focus();
     }
 
     //--------------------------------------------
