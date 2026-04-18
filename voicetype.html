@@ -29,6 +29,7 @@
         lines = lines.filter(n => n);// delete empty lines
         var modname='none';
         var linecounter=0;
+        var lastupc="";
         //document.getElementById('output').innerHTML = lines;
         for(var i =0;i<lines.length;i++){
           line=lines[i];
@@ -44,6 +45,13 @@
             var numbers=line.replace(/\[[^\[\]]+\]/g,''); //delete everything between brackets[]
              numbers = numbers.replace(/\D/g,""); //delete all non digits
             
+            var countdigits=line.match(/\d/g).length;
+            if(countdigits%4 !==0){
+              //error detected
+              document.body.style.backgroundColor = "brown";
+            }else{
+              document.body.style.backgroundColor = "cadetblue";
+            }
        
             
             numbers = numbers.match(/\d\d\d\d/g); // capture all 4digits numbers
@@ -56,12 +64,14 @@
               //document.getElementById('output').innerHTML += modname+linecounter+numbers[j]+"<br/>";
               document.getElementById('output').innerHTML += `${modname} ${linecounter}➖ ${numbers[j]}'<br/>`;
               linecounter++;
-
+            
             }
 
           }
 
         }
+        
+
         window.scrollTo(0, document.body.scrollHeight); //
     }
 
