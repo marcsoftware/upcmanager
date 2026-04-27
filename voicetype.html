@@ -125,12 +125,13 @@
     //
     //--------------------------------------------
     //🌘 🌙 🌎 🪐 💫 ✨ ⚡️ ☄️ 💥 🔥 🌪 ☀️ 🌤 🌦  ⛈  🌨 ❄️ ☃️ 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 🔺 🔻 🔸 🔹 🔶 🔷 🔳 🔲 ◾️ ◽️ 🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 
-    var emojis = `🥬 🥬 🍦 🥞 🍕 🥦 🥒 ☕ 🫘 💃 🥫 🍜 🍝 🥔 🪔 🎂 🥜 🍪 🍟 🍿 🧋 🍷 🥂 🍺 🥚 🌘 🌙 🌎 🪐 💫 ❄️ ⚡️ ☄️ 💥 🔥 🌪 ☀️ 🌤 🌦  ⛈  🌨 ❄️ ☃️ 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 🔺 🔻 🔸 🔹 🔶 🔷 🔳 🔲 ◾️ ◽️ 🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️`.split(' ');
+    var emojis = `🥬 🥬 🍦 🥞 🍕 🥦 🥒 ☕ 🫘 💃 🥫 🍜 🍝 🥔 🪔 🎂 🥣 🧇 🥜 🍪 🍟 🍿 🧋 🍷 🥂 🍺 🥚 🌘 🌙 🌎 🪐 💫 ❄️ ⚡️ ☄️ 💥 🔥 🌪 ☀️ 🌤 🌦  ⛈  🌨 ❄️ ☃️ 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 🔺 🔻 🔸 🔹 🔶 🔷 🔳 🔲 ◾️ ◽️ 🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️`.split(' ');
     function addEmoji(name){
       var alldigits = name.match(/[a-zA-Z]\d+/g)[0];
-      alldigits = alldigits.match(/\d+/g)[0];
 
-      var lastdigit = parseInt(alldigits[alldigits.length-1]);
+      alldigits = alldigits.replace(/\D/g,'');
+
+      var lastdigit = parseInt(alldigits);
    
         var emoji = emojis[lastdigit];
 
