@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <style>
+    #input{
+       width:80%;
+    }
+  </style>
+  <script>
+
+    //--------------------------------------------
+    window.onload = main;
+    //--------------------------------------------
+    
+    //
+    //--------------------------------------------
+    function main(){
+      var input = document.getElementById('input').value;
+      document.getElementById('output').innerHTML='';
+      parse(input);
+    }
+
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    function parse(text){
+        var lines = text.split("\n");
+        lines = lines.filter(n => n);// delete empty lines
+        var modname='none';
+        var linecounter=0;
+        var lastupc="";
+        //document.getElementById('output').innerHTML = lines;
+        for(var i =0;i<lines.length;i++){
+          line=lines[i];
+          if(line.includes("_")){
+            modname=line.trim();
+            //TODO add emoji to modname
+            modname = addEmoji(modname);
+
+            linecounter=1;
+            //document.getElementById('output').innerHTML += line+"<br/>";
+          }else{
+            //line contains numbers
+            var numbers=line.replace(/\[[^\[\]]+\]/g,''); //delete everything between brackets[]
+             numbers = numbers.replace(/\D/g,""); //delete all non digits
+            
+            var countdigits=line.match(/\d/g).length;
+            if(countdigits%4 !==0){
+              //error detected
+              document.body.style.backgroundColor = "brown";
+            }else{
+              document.body.style.backgroundColor = "cadetblue";
+            }
+       
+            
+            numbers = numbers.match(/\d\d\d\d/g); // capture all 4digits numbers
+            
+           // document.getElementById('output').innerHTML += numbers+"<br/>";
+            
+            // display the numbers using modname TAB linecounter TAB upc
+            for(var j =0;j<numbers.length;j++){
+              // print the upcs
+              //document.getElementById('output').innerHTML += modname+linecounter+numbers[j]+"<br/>";
+              document.getElementById('output').innerHTML += `${modname} ${linecounter}➖ ${numbers[j]}'<br/>`;
+              linecounter++;
+            
+            }
+
+          }
+
+        }
+        
+
+        window.scrollTo(0, document.body.scrollHeight); //
+    }
+
+     //--------------------------------------------
+    //
+    //--------------------------------------------
+    function debug(){
+     
+            // maybe turn theminto emojies
+            //1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣9️⃣𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗
+
+      // TODO format text in the input-textarea to have 5 upc on each line
+      // add [number] in brackets for easy debuggin.
+      var keepcounter=0;
+      var output="";
+      var original = document.getElementById('input').value;
+        all = original.trim().split("\n");
+         for(var i =0;i<all.length;i++){
+          var line = all[i];
+           if(line.includes("_")){
+            output+=line+"\n";
+            keepcounter=0;
+           }else{ //if line contains numbers
+                  var numbers=line.replace(/\[[^\[\]]+\]/g,''); //delete everything between brackets[]
+             numbers = numbers.replace(/\D/g,""); //delete all non digits
+            
+       
+            
+            numbers = numbers.match(/\d\d\d\d/g); // capture all 4digits numbers
+            
+           // document.getElementById('output').innerHTML += numbers+"<br/>";
+            
+            // display the numbers using modname TAB linecounter TAB upc
+            for(var j =0;j<numbers.length;j++){
+              
+             output+=numbers[j]+`[${j+keepcounter+1}]`;
+             if((j+1)%10===0){
+              output+='\n';
+             }
+
+            }
+              keepcounter+=j;
+           }
+        }
+
+         document.getElementById('input').value=output;
+         document.getElementById("input").focus();
+    }
+
+    //--------------------------------------------
+    //
+    //--------------------------------------------
+    //🌘 🌙 🌎 🪐 💫 ✨ ⚡️ ☄️ 💥 🔥 🌪 ☀️ 🌤 🌦  ⛈  🌨 ❄️ ☃️ 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 🔺 🔻 🔸 🔹 🔶 🔷 🔳 🔲 ◾️ ◽️ 🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 
+    var emojis = `🥬 🥬 🍦 🥞 🍕 🥦 🥒 ☕ 🫘 💃 🥫 🍜 🍝 🥔 🪔 🎂 🥣 🧇 🥜 🍪 🍟 🍿 🍬 💩 🧻 🗑️ 🧋 🍷 🥂 🍺 🥚 🌘 🌙 🌎 🪐 💫 ❄️ ⚡️ ☄️ 💥 🔥 🌪 ☀️ 🌤 🌦  ⛈  🌨 ❄️ ☃️ 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 🔺 🔻 🔸 🔹 🔶 🔷 🔳 🔲 ◾️ ◽️ 🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️`.split(' ');
+    function addEmoji(name){
+      var alldigits = name.match(/[a-zA-Z]\d+/g)[0];
+
+      alldigits = alldigits.replace(/\D/g,'');
+
+      var lastdigit = parseInt(alldigits);
+   
+        var emoji = emojis[lastdigit];
+
+      return name+emoji;
+    }
+  </script>
+  <p id='output'></p>
+<input type=button onclick=debug() value='debug'></input>
+  <textarea id="input" name="w3review" rows="4" cols="50" onkeyup="main()">
+    j5_5
+5645645645[0000]64564564565645645645[0000]6456456456
+5645645645[0000]6456456456
+</textarea>
+
+
+</body>
+</html>
